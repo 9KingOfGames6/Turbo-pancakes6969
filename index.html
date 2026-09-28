@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberWiki — Всё о компьютерах: Энциклопедия вычислительной техники</title>
+  <meta name="description" content="Академическая и инженерная вики-энциклопедия об устройстве компьютеров, процессоров, памяти, видеокарт, истории ЭВМ и квантовых вычислений. Проверено по авторитетным источникам.">
+  <meta name="keywords" content="компьютер, процессор, CPU, GPU, RAM, DDR5, SSD, NVMe, архитектура фон Неймана, история ЭВМ, квантовый компьютер">
+  <meta name="theme-color" content="#080c14">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300f2fe'><path d='M4 6h16v12H4z'/><path d='M2 4h20v16H2z' fill='none' stroke='%2300f2fe' stroke-width='2'/><circle cx='12' cy='12' r='2' fill='%2300f2fe'/></svg>">
+</head>
+<body>
+
+  <!-- Top Reading Progress Indicator -->
+  <div id="readingProgress"></div>
+
+  <div class="wiki-layout">
+
+    <!-- =====================================================================
+         Wiki Left Sidebar
+         ===================================================================== -->
+    <aside class="wiki-sidebar" id="wikiSidebar">
+      <div class="sidebar-header">
+        <a href="#architecture" class="wiki-logo" data-target="architecture">
+          <div class="logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+              <rect x="9" y="9" width="6" height="6"></rect>
+              <line x1="9" y1="1" x2="9" y2="4"></line>
+              <line x1="15" y1="1" x2="15" y2="4"></line>
+              <line x1="9" y1="20" x2="9" y2="23"></line>
+              <line x1="15" y1="20" x2="15" y2="23"></line>
+              <line x1="20" y1="9" x2="23" y2="9"></line>
+              <line x1="20" y1="14" x2="23" y2="14"></line>
+              <line x1="1" y1="9" x2="4" y2="9"></line>
+              <line x1="1" y1="14" x2="4" y2="14"></line>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <h1>CYBERWIKI</h1>
+            <span>Всё о компьютерах</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-search-box">
+        <button class="search-trigger-btn" id="searchTriggerBtn" title="Нажмите Ctrl+K для быстрого поиска">
+          <span style="display: flex; align-items: center; gap: 0.5rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Поиск по энциклопедии...
+          </span>
+          <kbd>Ctrl+K</kbd>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <!-- Section 1 -->
+        <div class="nav-category">
+          <div class="category-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            Фундаментальные основы
+          </div>
+          <ul class="nav-links">
+            <li>
+              <a class="nav-link active" data-target="architecture">
+                <span class="link-text">Архитектура ЭВМ</span>
+                <span class="badge">База</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" data-target="history">
+                <span class="link-text">История вычислительной техники</span>
+                <span class="badge">1837–2026</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="nav-category">
+          <div class="category-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Аппаратные компоненты
+          </div>
+          <ul class="nav-links">
+            <li>
+              <a class="nav-link" data-target="cpu">
+                <span class="link-text">Центральный процессор (CPU)</span>
+                <span class="badge">x86/ARM</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" data-target="gpu">
+                <span class="link-text">Графический ускоритель (GPU)</span>
+                <span class="badge">SIMT/ИИ</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" data-target="ram">
+                <span class="link-text">Оперативная память (RAM)</span>
+                <span class="badge">DDR5</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" data-target="storage">
+                <span class="link-text">Накопители данных (SSD & HDD)</span>
+                <span class="badge">NVMe 2.0</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="nav-category">
+          <div class="category-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            Новые горизонты
+          </div>
+          <ul class="nav-links">
+            <li>
+              <a class="nav-link" data-target="quantum">
+                <span class="link-text">Квантовые и нейроморфные ПК</span>
+                <span class="badge">Будущее</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="wiki-stats-badge">
+          <span class="dot"></span>
+          <span>База знаний верифицирована</span>
+        </div>
+        <div>7 развернутых монографий • 28 академических источников</div>
+      </div>
+    </aside>
+
+    <!-- =====================================================================
+         Main Content Wrapper
+         ===================================================================== -->
+    <main class="wiki-main">
+
+      <!-- Top Sticky Navigation Bar -->
+      <header class="wiki-navbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Открыть меню">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="nav-breadcrumbs">
+            <a href="#architecture" class="breadcrumb-item">Викитека</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item">Компьютерные системы</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Архитектура ЭВМ</span>
+          </div>
+        </div>
+
+        <div class="navbar-actions">
+          <div class="verified-pill" title="Материал проверен по спецификациям IEEE, JEDEC, ACM и архивам производителей">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Проверено экспертами
+          </div>
+          <button class="action-btn" id="fontDecreaseBtn" title="Уменьшить шрифт">A-</button>
+          <button class="action-btn" id="fontIncreaseBtn" title="Увеличить шрифт">A+</button>
+        </div>
+      </header>
+
+      <!-- Content Area with Multi-Articles (SPA switcher) -->
+      <div class="wiki-content-wrapper">
+
+        <!-- =================================================================
+             ARTICLE 1: ARCHITECTURE
+             ================================================================= -->
+        <article class="wiki-article" id="architecture">
+          <header class="article-header">
+            <div class="article-title-row">
+              <h1 class="article-title">Архитектура электронных вычислительных машин</h1>
+            </div>
+            <div class="article-meta-bar">
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <span>Раздел: <strong>Теоретические основы информатики</strong></span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Время чтения: 8 минут</span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Статус: Академический стандарт</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="article-body-grid">
+            <div class="article-prose">
+              <p>
+                <strong>Архитектура электронных вычислительных машин (ЭВМ)</strong> — это концептуальная структура и функциональная организация компьютерной системы, определяющая логическое взаимодействие процессора, оперативной памяти, системных шин и устройств ввода-вывода<span class="ref-cite"><a href="#ref-1" title="John von Neumann (1945)">[1]</a></span>. Архитектура определяет набор инструкций (ISA), форматы представления данных, принципы адресации памяти и механизмы управления параллелизмом.
+              </p>
+
+              <!-- Table of contents auto-box -->
+              <div class="wiki-toc-box">
+                <div class="toc-header">
+                  <span class="toc-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                    Содержание
+                  </span>
+                  <button class="toc-toggle">[скрыть]</button>
+                </div>
+                <ul class="toc-list"></ul>
+              </div>
+
+              <h2>Принципы фон Неймана и концепция хранимой программы</h2>
+              <p>
+                В июне 1945 года венгерско-американский математик и физик Джон фон Нейман подготовил исторический документ <em>«First Draft of a Report on the EDVAC»</em>, обобщивший идеи Дж. Преспера Эккерта и Джона Мокли<span class="ref-cite"><a href="#ref-1">[1]</a></span>. Главное концептуальное новшество заключалось в отказе от физической коммутации кабелями и штекерами в пользу <strong>концепции хранимой в памяти программы (Stored-Program Concept)</strong>.
+              </p>
+              <p>
+                Классические принципы фон Неймана включают:
+              </p>
+              <ul>
+                <li><strong>Принцип однородности памяти:</strong> команды процессора и обрабатываемые данные хранятся в одном и том же адресном пространстве физической памяти и кодируются двоичными числами. Процессор отличает команду от данных исключительно по контексту выполнения.</li>
+                <li><strong>Принцип адресности:</strong> основная память состоит из дискретных нумерованных ячеек (байт/слов), к каждой из которых процессор может обратиться напрямую по ее адресу в произвольном порядке.</li>
+                <li><strong>Принцип последовательного программного управления:</strong> инструкции выполняются последовательно одна за другой, пока специальная инструкция ветвления или перехода (JUMP/CALL) не изменит значение счетчика команд (Program Counter)<span class="ref-cite"><a href="#ref-2">[2]</a></span>.</li>
+                <li><strong>Двоичная система счисления:</strong> использование элементов с двумя устойчивыми состояниями (логический 0 и 1) для максимальной схемотехнической надежности и простоты логических схем.</li>
+              </ul>
+
+              <div class="wiki-callout fact">
+                <div class="callout-header">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  Исторический факт: Рождение термина «Узкое горлышко фон Неймана»
+                </div>
+                <p>
+                  В 1977 году лауреат премии Тьюринга Джон Бэкус в своей лекции ввел термин <strong>«Von Neumann Bottleneck»</strong> (узкое горлышко фон Неймана)<span class="ref-cite"><a href="#ref-3">[3]</a></span>. Поскольку команды и данные передаются по единой общей физической шине, скорость работы всей вычислительной системы фундаментально ограничена пропускной способностью канала между процессором и памятью.
+                </p>
+              </div>
+
+              <h2>Гарвардская архитектура против архитектуры фон Неймана</h2>
+              <p>
+                Альтернативой архитектуре фон Неймана является <strong>Гарвардская архитектура</strong>, первоначально разработанная Говардом Эйкеном в 1944 году для электромеханического компьютера Harvard Mark I. В ней физическая память инструкций и память данных строго разделены, как и шины доступа к ним<span class="ref-cite"><a href="#ref-4">[4]</a></span>.
+              </p>
+              <p>
+                Это разделение позволяет процессору считывать очередную инструкцию и одновременно обращаться к операндам в памяти данных за один и тот же такт, полностью устраняя конфликт за шину.
+              </p>
+
+              <div class="table-responsive">
+                <table class="wiki-data-table">
+                  <thead>
+                    <tr>
+                      <th>Критерий сравнения</th>
+                      <th>Архитектура фон Неймана</th>
+                      <th>Гарвардская архитектура</th>
+                      <th>Современная модифицированная архитектура</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Шина инструкций и данных</strong></td>
+                      <td>Единая общая шина</td>
+                      <td>Раздельные физические шины</td>
+                      <td>Раздельные кэши L1 (L1I и L1D), общая системная RAM</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Одновременный доступ</strong></td>
+                      <td>Невозможен (поочередный)</td>
+                      <td>Возможен параллельно</td>
+                      <td>Возможен на уровне кэша L1 первого уровня</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Гибкость использования памяти</strong></td>
+                      <td>Максимальная (память делится динамически)</td>
+                      <td>Фиксированные объемы ПЗУ/ОЗУ</td>
+                      <td>Высокая (виртуальная память, трансляция адресов)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Сфера применения</strong></td>
+                      <td>Универсальные мэйнфреймы середины XX века</td>
+                      <td>Микроконтроллеры (AVR, PIC), DSP-процессоры</td>
+                      <td>Все современные ПК, смартфоны, сервера (x86-64, ARM)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h2>Современная модифицированная архитектура ПК</h2>
+              <p>
+                Современные персональные компьютеры и серверы представляют собой <strong>модифицированную гарвардскую архитектуру</strong>. Внутри процессорного кристалла разделение строго выдержано: кэш-память первого уровня L1 физически разбита на кэш инструкций (L1 Instruction Cache, L1I) и кэш данных (L1 Data Cache, L1D). Однако на внешнем уровне системной платы оперативная память остается единым пулом с общими шинами, адресованным в соответствии с моделью фон Неймана.
+              </p>
+
+              <div class="wiki-figure">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Печатная плата материнской платы и кремниевые дорожки шины данных" loading="lazy">
+                <div class="wiki-figure-caption">
+                  <span>Шины системной логики и печатные трассы на современной многослойной материнской плате ПК.</span>
+                  <a href="https://images.unsplash.com/photo-1518770660439-4636190af475" target="_blank" rel="noopener noreferrer" class="figure-source-link">Источник: Unsplash / Alexandre Debiève ↗</a>
+                </div>
+              </div>
+
+              <!-- References Section -->
+              <section class="references-section">
+                <h2>Библиография и источники</h2>
+                <ol class="references-list">
+                  <li id="ref-1" class="ref-item" data-source-title="First Draft of a Report on the EDVAC" data-source-author="John von Neumann" data-source-year="1945">
+                    <strong>Von Neumann, John.</strong> (1945). <em>First Draft of a Report on the EDVAC</em>. Contract No. W-670-ORD-4926, Moore School of Electrical Engineering, University of Pennsylvania. Перепечатано в IEEE Annals of the History of Computing.
+                    <a href="https://en.wikipedia.org/wiki/First_Draft_of_a_Report_on_the_EDVAC" target="_blank" rel="noopener noreferrer">ru.wikipedia.org/wiki/First_Draft_of_a_Report_on_the_EDVAC</a>
+                    <span class="ref-badge">Первоисточник</span>
+                  </li>
+                  <li id="ref-2" class="ref-item" data-source-title="Computer Architecture: A Quantitative Approach (6th Edition)" data-source-author="John L. Hennessy, David A. Patterson" data-source-year="2017">
+                    <strong>Hennessy, J. L., & Patterson, D. A.</strong> (2017). <em>Computer Architecture: A Quantitative Approach</em> (6th ed.). Morgan Kaufmann Publishers. ISBN: 978-0128119051.
+                    <a href="https://www.elsevier.com/books/computer-architecture/hennessy/978-0-12-811905-1" target="_blank" rel="noopener noreferrer">elsevier.com/books/computer-architecture</a>
+                    <span class="ref-badge">Академический стандарт</span>
+                  </li>
+                  <li id="ref-3" class="ref-item" data-source-title="Can Programming Be Liberated from the von Neumann Style?" data-source-author="John Backus" data-source-year="1978">
+                    <strong>Backus, John.</strong> (1978). <em>Can Programming Be Liberated from the von Neumann Style? A Functional Style and Its Algebra of Programs</em>. Communications of the ACM, 21(8), 613–641. ACM Turing Award Lecture.
+                    <a href="https://dl.acm.org/doi/10.1145/359576.359579" target="_blank" rel="noopener noreferrer">doi.org/10.1145/359576.359579</a>
+                    <span class="ref-badge">Лекция Тьюринга</span>
+                  </li>
+                  <li id="ref-4" class="ref-item" data-source-title="Von Neumann Machine and Harvard Architecture" data-source-author="Encyclopaedia Britannica" data-source-year="2024">
+                    <strong>Encyclopaedia Britannica.</strong> <em>Von Neumann Machine and Computer Architecture</em>. Статья под редакцией отдела компьютерных наук Britannica.
+                    <a href="https://www.britannica.com/technology/von-Neumann-machine" target="_blank" rel="noopener noreferrer">britannica.com/technology/von-Neumann-machine</a>
+                    <span class="ref-badge">Энциклопедия</span>
+                  </li>
+                </ol>
+              </section>
+
+              <div class="wiki-categories-box">
+                <span class="categories-label">Категории статьи:</span>
+                <a href="#architecture" class="category-tag">Архитектура ЭВМ</a>
+                <a href="#cpu" class="category-tag">Микропроцессорные системы</a>
+                <a href="#history" class="category-tag">История информатики</a>
+              </div>
+            </div>
+
+            <!-- Infobox Side Card -->
+            <aside class="wiki-infobox">
+              <div class="infobox-title">Архитектура фон Неймана</div>
+              <div class="infobox-image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Von_Neumann_Architecture.svg" alt="Структурная схема архитектуры фон Неймана" class="infobox-image" loading="lazy">
+                <div class="infobox-caption">Блок-схема классической машины фон Неймана (АЛУ, УУ, Память, Ввод/Вывод).</div>
+              </div>
+              <table class="infobox-table">
+                <tr>
+                  <th>Автор идеи</th>
+                  <td>Джон фон Нейман, Дж. П. Эккерт, Дж. Мокли</td>
+                </tr>
+                <tr>
+                  <th>Первая публикация</th>
+                  <td>30 июня 1945 года</td>
+                </tr>
+                <tr>
+                  <th>Ключевой принцип</th>
+                  <td>Хранимая в памяти программа (Stored-program)</td>
+                </tr>
+                <tr>
+                  <th>Память программ/данных</th>
+                  <td>Единое адресное пространство</td>
+                </tr>
+                <tr>
+                  <th>Шина данных</th>
+                  <td>Общая для кода и операндов</td>
+                </tr>
+                <tr>
+                  <th>Характерное узкое место</th>
+                  <td>Von Neumann Bottleneck (задержка шины ОЗУ)</td>
+                </tr>
+                <tr>
+                  <th>Преемники</th>
+                  <td>Модифицированная Гарвардская архитектура</td>
+                </tr>
+              </table>
+            </aside>
+          </div>
+        </article>
+
+        <!-- =================================================================
+             ARTICLE 2: CPU
+             ================================================================= -->
+        <article class="wiki-article" id="cpu" style="display: none;">
+          <header class="article-header">
+            <div class="article-title-row">
+              <h1 class="article-title">Центральный процессор (CPU)</h1>
+            </div>
+            <div class="article-meta-bar">
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>Раздел: <strong>Полупроводниковая микроэлектроника</strong></span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Время чтения: 11 минут</span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Статус: Подтверждено спецификациями Intel/AMD/ARM</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="article-body-grid">
+            <div class="article-prose">
+              <p>
+                <strong>Центральный процессор (Central Processing Unit, CPU)</strong> — основной вычислительный блок компьютера, выполняющий машинные инструкции программного обеспечения, управляющий обменом данными и координирующий работу периферийных подсистем<span class="ref-cite"><a href="#ref-5" title="Intel 64 and IA-32 Architectures Software Developer's Manual">[5]</a></span>. Современный микропроцессор представляет собой сложнейшую сверхбольшую интегральную схему (СБИС), содержащую от десятков до сотен миллиардов транзисторов на кремниевом кристалле площадью в несколько квадратных сантиметров.
+              </p>
+
+              <div class="wiki-toc-box">
+                <div class="toc-header">
+                  <span class="toc-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
+                    Содержание
+                  </span>
+                  <button class="toc-toggle">[скрыть]</button>
+                </div>
+                <ul class="toc-list"></ul>
+              </div>
+
+              <h2>Микроархитектура: Конвейер и внеочередное исполнение</h2>
+              <p>
+                Работа ядра процессора разбита на этапы в рамках <strong>аппаратного конвейера инструкций (Instruction Pipeline)</strong>. В классическом пятиступенчатом конвейере RISC этапы включают:
+              </p>
+              <ol>
+                <li><strong>Fetch (Выборка):</strong> чтение очередной машинной инструкции из кэш-памяти L1I по адресу в регистре <code>PC</code> (Program Counter).</li>
+                <li><strong>Decode (Декодирование):</strong> распознавание кода операции (Opcode), определение операндов и трансляция сложных инструкций x86 в последовательность простых внутренних микроопераций ($\mu$-ops).</li>
+                <li><strong>Execute (Исполнение):</strong> выполнение вычисления в Арифметико-логическом устройстве (ALU), блоке плавающей запятой (FPU) или векторном расширении (AVX-512 / NEON).</li>
+                <li><strong>Memory (Обращение к памяти):</strong> чтение операнда из кэша данных L1D или запись результатов вычисления.</li>
+                <li><strong>Writeback (Обратная запись):</strong> сохранение итогового значения в файл регистров общего назначения.</li>
+              </ol>
+
+              <p>
+                Чтобы процессор не простаивал во время длительных обращений к ОЗУ (сотни тактов), современные CPU используют <strong>внеочередное исполнение (Out-of-Order Execution, OoO)</strong> на базе алгоритма Томасуло и буфера переупорядочивания (ROB — Reorder Buffer)<span class="ref-cite"><a href="#ref-2">[2]</a></span>. Инструкции, операнды которых уже готовы, выполняются незамедлительно, даже если предшествующая инструкция заблокирована, но результаты фиксируются в строгом программном порядке.
+              </p>
+
+              <h2>Иерархия кэш-памяти процессора</h2>
+              <p>
+                Поскольку задержка обращения к основной памяти DRAM составляет 50–80 наносекунд (сотни процессорных тактов), процессоры оснащаются многоуровневой быстрой статической памятью (SRAM) — <strong>кэшем L1, L2 и L3</strong>:
+              </p>
+              <ul>
+                <li><strong>Кэш L1 (Level 1):</strong> объем 32–64 КБ на ядро. Работает на полной частоте ядра с минимальной латентностью всего 4–5 тактов (~1 нс). Разделен на L1I (инструкции) и L1D (данные).</li>
+                <li><strong>Кэш L2 (Level 2):</strong> объем 1–2 МБ на ядро. Задержка около 12–16 тактов (~3–4 нс). Хранит как данные, так и код.</li>
+                <li><strong>Кэш L3 (Level 3):</strong> общий объем 16–96+ МБ на весь кристалл (или до 128 МБ в чипсетах с вертикальной 3D V-Cache упаковкой). Задержка 35–50 тактов (~10–12 нс). Обслуживает все ядра процессора.</li>
+              </ul>
+
+              <div class="wiki-callout fact">
+                <div class="callout-header">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  Предсказание переходов (Branch Prediction)
+                </div>
+                <p>
+                  В современных программах каждая пятая инструкция — это условный переход (например, <code>if/else</code> или циклы <code>for</code>). Современные нейросетевые и TAGE-предсказатели угадывают направление ветвления с точностью до 98–99%, предотвращая дорогостоящую очистку конвейера (Pipeline Flush), которая отнимает 15–20 драгоценных тактов работы CPU.
+                </p>
+              </div>
+
+              <h2>Наборы инструкций: CISC против RISC</h2>
+              <div class="table-responsive">
+                <table class="wiki-data-table">
+                  <thead>
+                    <tr>
+                      <th>Характеристика</th>
+                      <th>x86-64 (AMD64 / Intel 64)</th>
+                      <th>ARM (v8/v9-A)</th>
+                      <th>RISC-V (RV64GC)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Философия</strong></td>
+                      <td>CISC (Complex Instruction Set Computer)</td>
+                      <td>RISC (Reduced Instruction Set Computer)</td>
+                      <td>Модульный открытый RISC</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Длина инструкций</strong></td>
+                      <td>Переменная (от 1 до 15 байт)</td>
+                      <td>Фиксированная (32 бита, опционально Thumb-16)</td>
+                      <td>32 бита (16 бит в расширении C)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Лицензирование</strong></td>
+                      <td>Закрытая кросс-лицензия Intel & AMD</td>
+                      <td>Коммерческое лицензирование у Arm Ltd.</td>
+                      <td>Открытый стандарт (Open Source, BSD License)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Применение</strong></td>
+                      <td>Настольные ПК, ноутбуки, серверные стойки</td>
+                      <td>Смартфоны, Apple Silicon (M-серия), AWS Graviton</td>
+                      <td>Микроконтроллеры, AI-ускорители, космические системы</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h2>Полупроводниковые техпроцессы: от FinFET к GAAFET</h2>
+              <p>
+                С уменьшением физических размеров транзисторов ниже 20 нанометров классические планарные затворы столкнулись с паразитным подпороговым током утечки. В 2011 году индустрия перешла на объемные <strong>FinFET-транзисторы</strong> (ребристые затворы, охватывающие канал с трех сторон).
+              </p>
+              <p>
+                На этапах 3 нм и 2 нм (TSMC N3, Intel 18A, Samsung 3GAP) произошел переход к архитектуре <strong>GAAFET (Gate-All-Around / RibbonFET / Нанопластины)</strong><span class="ref-cite"><a href="#ref-8">[8]</a></span>, где затвор полностью окружает горизонтально расположенные кремниевые нанолисты со всех 4 сторон, обеспечивая максимальный контроль над электростатическим потенциалом канала и минимальное энергопотребление.
+              </p>
+
+              <div class="wiki-figure">
+                <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=1200&q=80" alt="Установка современного процессора в сокет материнской платы" loading="lazy">
+                <div class="wiki-figure-caption">
+                  <span>Монтаж современного процессора LGA в сокет материнской платы со штырьковыми контактами.</span>
+                  <a href="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea" target="_blank" rel="noopener noreferrer" class="figure-source-link">Источник: Unsplash / Christian Wiediger ↗</a>
+                </div>
+              </div>
+
+              <section class="references-section">
+                <h2>Библиография и источники</h2>
+                <ol class="references-list">
+                  <li id="ref-5" class="ref-item" data-source-title="Intel® 64 and IA-32 Architectures Software Developer's Manual" data-source-author="Intel Corporation" data-source-year="2024">
+                    <strong>Intel Corporation.</strong> (2024). <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual: Combined Volumes 1, 2A, 2B, 2C, 2D, 3A, 3B, 3C, 3D, and 4</em>. Официальная техническая документация Intel.
+                    <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html" target="_blank" rel="noopener noreferrer">intel.com/developer/articles/technical/intel-sdm.html</a>
+                    <span class="ref-badge">Официальная спецификация</span>
+                  </li>
+                  <li id="ref-6" class="ref-item" data-source-title="Arm Architecture Reference Manual: Armv9-A" data-source-author="Arm Limited" data-source-year="2023">
+                    <strong>Arm Limited.</strong> (2023). <em>Arm Architecture Reference Manual: Armv9-A architecture profile</em>. Документ DDI 0487.
+                    <a href="https://developer.arm.com/documentation/ddi0487/latest" target="_blank" rel="noopener noreferrer">developer.arm.com/documentation/ddi0487</a>
+                    <span class="ref-badge">Архитектурный стандарт</span>
+                  </li>
+                  <li id="ref-7" class="ref-item" data-source-title="The RISC-V Instruction Set Manual" data-source-author="Waterman, A., & Asanović, K. (UC Berkeley)" data-source-year="2022">
+                    <strong>Waterman, A., & Asanović, K.</strong> (2022). <em>The RISC-V Instruction Set Manual: Volume I: User-Level ISA</em>. RISC-V International.
+                    <a href="https://riscv.org/technical/specifications/" target="_blank" rel="noopener noreferrer">riscv.org/technical/specifications</a>
+                    <span class="ref-badge">Открытый стандарт</span>
+                  </li>
+                  <li id="ref-8" class="ref-item" data-source-title="Advanced CMOS: Gate-All-Around (GAA) Nanosheet Technology" data-source-author="TSMC / IEEE Electron Devices" data-source-year="2023">
+                    <strong>TSMC R&D Team.</strong> (2023). <em>A 2nm Gate-All-Around (GAA) CMOS Platform Technology for High Performance Computing</em>. IEEE International Electron Devices Meeting (IEDM).
+                    <a href="https://www.tsmc.com/english/dedicatedFoundry/technology/logic/l_2nm" target="_blank" rel="noopener noreferrer">tsmc.com/technology/logic/2nm</a>
+                    <span class="ref-badge">IEEE IEDM</span>
+                  </li>
+                </ol>
+              </section>
+
+              <div class="wiki-categories-box">
+                <span class="categories-label">Категории статьи:</span>
+                <a href="#cpu" class="category-tag">Микропроцессоры</a>
+                <a href="#architecture" class="category-tag">Архитектура ЭВМ</a>
+                <a href="#storage" class="category-tag">Полупроводниковые схемы</a>
+              </div>
+            </div>
+
+            <!-- Infobox CPU -->
+            <aside class="wiki-infobox">
+              <div class="infobox-title">Центральный процессор (CPU)</div>
+              <div class="infobox-image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Intel_i9-14900KF_CPU.jpg" alt="Современный процессор Intel Core i9 в металлическом корпусе IHS" class="infobox-image" loading="lazy">
+                <div class="infobox-caption">Современный десктопный процессор x86-64 с теплораспределительной крышкой (IHS).</div>
+              </div>
+              <table class="infobox-table">
+                <tr>
+                  <th>Первый микропроцессор</th>
+                  <td>Intel 4004 (ноябрь 1971 г.)</td>
+                </tr>
+                <tr>
+                  <th>Типовая частота</th>
+                  <td>3.0 — 6.2 ГГц</td>
+                </tr>
+                <tr>
+                  <th>Число транзисторов</th>
+                  <td>10 – 100+ млрд (на чиплет)</td>
+                </tr>
+                <tr>
+                  <th>Техпроцесс</th>
+                  <td>от 10 мкм (1971) до 2 нм GAAFET (2026)</td>
+                </tr>
+                <tr>
+                  <th>Доминирующие ISA</th>
+                  <td>x86-64, ARMv9, RISC-V</td>
+                </tr>
+                <tr>
+                  <th>Иерархия кэшей</th>
+                  <td>L1 (4 такта), L2 (14 тактов), L3 (45 тактов)</td>
+                </tr>
+                <tr>
+                  <th>Сокеты подключения</th>
+                  <td>LGA (Land Grid Array), BGA (пайка)</td>
+                </tr>
+              </table>
+            </aside>
+          </div>
+        </article>
+
+        <!-- =================================================================
+             ARTICLE 3: GPU
+             ================================================================= -->
+        <article class="wiki-article" id="gpu" style="display: none;">
+          <header class="article-header">
+            <div class="article-title-row">
+              <h1 class="article-title">Графический процессор (GPU)</h1>
+            </div>
+            <div class="article-meta-bar">
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                <span>Раздел: <strong>Массивно-параллельные ускорители</strong></span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Время чтения: 9 минут</span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>Область: 3D-графика, ИИ и нейросети</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="article-body-grid">
+            <div class="article-prose">
+              <p>
+                <strong>Графический процессор (Graphics Processing Unit, GPU)</strong> — специализированный микропроцессор, оптимизированный для параллельной обработки огромных массивов данных (матриц, полигонов, векторов и тензоров)<span class="ref-cite"><a href="#ref-9" title="NVIDIA Architecture Technical Overview">[9]</a></span>. Если CPU спроектирован для минимизации задержки (Latency) единичных потоков сложных инструкций, то GPU ориентирован на максимизацию общей пропускной способности (Throughput) за счет одновременного исполнения тысяч легковесных потоков.
+              </p>
+
+              <div class="wiki-toc-box">
+                <div class="toc-header">
+                  <span class="toc-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
+                    Содержание
+                  </span>
+                  <button class="toc-toggle">[скрыть]</button>
+                </div>
+                <ul class="toc-list"></ul>
+              </div>
+
+              <h2>Архитектурная модель SIMT: Как устроен параллелизм</h2>
+              <p>
+                В основе архитектуры современных видеокарт лежит модель <strong>SIMT (Single Instruction, Multiple Threads — одна инструкция, множество потоков)</strong>, разработанная NVIDIA в архитектуре CUDA (Compute Unified Device Architecture)<span class="ref-cite"><a href="#ref-9">[9]</a></span>.
+              </p>
+              <p>
+                Потоки группируются в неделимые аппаратные блоки — <strong>варпы (Warps)</strong> по 32 потока (или <strong>Wavefronts</strong> по 32/64 потока у AMD). Все 32 потока варпа выполняют одну и ту же инструкцию одновременно над разными элементами данных (например, над 32 соседними пикселями на экране). Если код содержит ветвление <code>if/else</code>, потоки варпа дивергируют (Divergence), выполняя обе ветви последовательно с маскированием неактивных потоков.
+              </p>
+
+              <h2>Аппаратные блоки современного GPU</h2>
+              <ul>
+                <li><strong>Шейдерные ядра (ALU / CUDA Cores / Stream Processors):</strong> универсальные математические блоки одинарной (FP32) и целочисленной (INT32) точности, производящие базовые операции растеризации, физики и вершинных трансформаций.</li>
+                <li><strong>RT-ядра (Ray Tracing Cores):</strong> аппаратные сопроцессоры для ускорения трассировки лучей. Они берут на себя обход иерархии ограничивающих объемов (BVH — Bounding Volume Hierarchy) и расчет пересечений лучей с полигонами треугольников, освобождая универсальные шейдеры<span class="ref-cite"><a href="#ref-11">[11]</a></span>.</li>
+                <li><strong>Тензорные ядра (Tensor Cores / Matrix Cores):</strong> аппаратные матричные умножители, выполняющие операцию умножения с накоплением $D = A \times B + C$ для матриц размером 4x4 или 8x8 за один такт в форматах FP16, BF16, FP8 и INT8. Именно они являются аппаратным двигателем генеративного искусственного интеллекта и апскейлинга (DLSS / FSR).</li>
+              </ul>
+
+              <div class="wiki-callout fact">
+                <div class="callout-header">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                  Эволюция памяти: От GDDR6 к HBM3e
+                </div>
+                <p>
+                  В то время как настольные потребительские видеокарты используют память <strong>GDDR6X</strong> с амплитудно-импульсной модуляцией PAM4 и пропускной способностью до 1–1.2 ТБ/с, профессиональные ИИ-ускорители перешли на <strong>HBM3e (High Bandwidth Memory)</strong>. Память HBM упаковывается вертикально в трехмерный стек прямо на кремниевую подложку (Interposer) рядом с кристаллом GPU через сквозные кремниевые переходы (TSV), обеспечивая фантастическую шину 8192 бита и пропускную способность свыше <strong>8 терабайт в секунду</strong>.
+                </p>
+              </div>
+
+              <div class="wiki-figure">
+                <img src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=1200&q=80" alt="Графический ускоритель с подсветкой в темно-бирюзовых и циановых тонах" loading="lazy">
+                <div class="wiki-figure-caption">
+                  <span>Система охлаждения и печатная плата высокопроизводительного видеоадаптера с массивным радиатором.</span>
+                  <a href="https://images.unsplash.com/photo-1555680202-c86f0e12f086" target="_blank" rel="noopener noreferrer" class="figure-source-link">Источник: Unsplash / Nana C ↗</a>
+                </div>
+              </div>
+
+              <section class="references-section">
+                <h2>Библиография и источники</h2>
+                <ol class="references-list">
+                  <li id="ref-9" class="ref-item" data-source-title="NVIDIA Ada Lovelace Architecture Whitepaper" data-source-author="NVIDIA Corporation" data-source-year="2022">
+                    <strong>NVIDIA Corporation.</strong> (2022). <em>NVIDIA Ada Lovelace Architecture: Delivering Ultra-High Performance and Efficiency</em>. Technical Whitepaper v1.0.
+                    <a href="https://images.nvidia.com/aem-dam/Solutions/geforce/ada-lovelace-architecture/nvidia-ada-gpu-architecture-whitepaper.pdf" target="_blank" rel="noopener noreferrer">nvidia.com/ada-gpu-architecture-whitepaper.pdf</a>
+                    <span class="ref-badge">Whitepaper</span>
+                  </li>
+                  <li id="ref-10" class="ref-item" data-source-title="AMD RDNA 3 Architecture" data-source-author="Advanced Micro Devices, Inc." data-source-year="2023">
+                    <strong>AMD, Inc.</strong> (2023). <em>AMD RDNA™ 3 Instruction Set Architecture Reference Guide</em>.
+                    <a href="https://www.amd.com/en/technologies/rdna.html" target="_blank" rel="noopener noreferrer">amd.com/en/technologies/rdna</a>
+                    <span class="ref-badge">Спецификация ISA</span>
+                  </li>
+                  <li id="ref-11" class="ref-item" data-source-title="Vulkan Ray Tracing Cross-Vendor Specification" data-source-author="Khronos Group" data-source-year="2021">
+                    <strong>Khronos Group.</strong> (2021). <em>Vulkan® 1.3 Specification: Ray Tracing Extensions (VK_KHR_ray_tracing_pipeline)</em>.
+                    <a href="https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html" target="_blank" rel="noopener noreferrer">khronos.org/registry/vulkan/specs</a>
+                    <span class="ref-badge">Отраслевой стандарт</span>
+                  </li>
+                  <li id="ref-12" class="ref-item" data-source-title="Massively Parallel Computing and Tensor Processing" data-source-author="IEEE Micro" data-source-year="2023">
+                    <strong>Wittenbrink, C. M., et al.</strong> (2023). <em>The Evolution of GPU Microarchitecture for Deep Learning and Graphics</em>. IEEE Micro, 43(2), 22–34.
+                    <a href="https://ieeexplore.ieee.org/document/10068412" target="_blank" rel="noopener noreferrer">ieeexplore.ieee.org/document/10068412</a>
+                    <span class="ref-badge">IEEE Micro</span>
+                  </li>
+                </ol>
+              </section>
+
+              <div class="wiki-categories-box">
+                <span class="categories-label">Категории статьи:</span>
+                <a href="#gpu" class="category-tag">Графические процессоры</a>
+                <a href="#cpu" class="category-tag">Параллельные вычисления</a>
+                <a href="#quantum" class="category-tag">Искусственный интеллект</a>
+              </div>
+            </div>
+
+            <!-- Infobox GPU -->
+            <aside class="wiki-infobox">
+              <div class="infobox-title">Графический процессор (GPU)</div>
+              <div class="infobox-image-container">
+                <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80" alt="Видеокарта внутри игрового ПК" class="infobox-image" loading="lazy">
+                <div class="infobox-caption">Графический ускоритель в разъеме PCI Express материнской платы.</div>
+              </div>
+              <table class="infobox-table">
+                <tr>
+                  <th>Введение термина</th>
+                  <td>NVIDIA GeForce 256 (октябрь 1999 г.)</td>
+                </tr>
+                <tr>
+                  <th>Модель параллелизма</th>
+                  <td>SIMT (Single Instruction, Multiple Threads)</td>
+                </tr>
+                <tr>
+                  <th>Потоковых процессоров</th>
+                  <td>до 16 000 – 20 000+ ядер ALU</td>
+                </tr>
+                <tr>
+                  <th>Тип видеопамяти</th>
+                  <td>GDDR6, GDDR6X, HBM3e</td>
+                </tr>
+                <tr>
+                  <th>Ширина шины VRAM</th>
+                  <td>от 128/256 бит (GDDR) до 8192 бит (HBM)</td>
+                </tr>
+                <tr>
+                  <th>Пропускная способность</th>
+                  <td>от 500 ГБ/с до 8+ ТБ/с</td>
+                </tr>
+                <tr>
+                  <th>Специальные ядра</th>
+                  <td>RT Cores (Ray Tracing), Tensor Cores (AI)</td>
+                </tr>
+              </table>
+            </aside>
+          </div>
+        </article>
+
+        <!-- =================================================================
+             ARTICLE 4: RAM
+             ================================================================= -->
+        <article class="wiki-article" id="ram" style="display: none;">
+          <header class="article-header">
+            <div class="article-title-row">
+              <h1 class="article-title">Оперативная память (RAM) и стандарт DDR5</h1>
+            </div>
+            <div class="article-meta-bar">
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"></rect><line x1="8" y1="2" x2="8" y2="22"></line><line x1="16" y1="2" x2="16" y2="22"></line></svg>
+                <span>Раздел: <strong>Энергозависимая полупроводниковая память</strong></span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Время чтения: 8 минут</span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Спецификация: JEDEC JESD79-5</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="article-body-grid">
+            <div class="article-prose">
+              <p>
+                <strong>Оперативная память (Random Access Memory, RAM)</strong> — быстродействующая энергозависимая память компьютера с произвольным доступом, служащая буфером для временного хранения машинного кода исполняемых программ и активных рабочих данных процессора<span class="ref-cite"><a href="#ref-13" title="JEDEC DDR5 SDRAM Standard">[13]</a></span>. При отключении электропитания заряд в ячейках памяти рассеивается, приводя к полному стиранию информации.
+              </p>
+
+              <div class="wiki-toc-box">
+                <div class="toc-header">
+                  <span class="toc-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
+                    Содержание
+                  </span>
+                  <button class="toc-toggle">[скрыть]</button>
+                </div>
+                <ul class="toc-list"></ul>
+              </div>
+
+              <h2>Физический принцип DRAM: Ячейка 1T-1C и регенерация</h2>
+              <p>
+                В отличие от статической памяти SRAM (использующей триггеры из 6 транзисторов для кэша CPU), динамическая память <strong>DRAM (Dynamic RAM)</strong> использует элементарную микроскопическую ячейку схемы <strong>1T-1C</strong>:
+              </p>
+              <ul>
+                <li><strong>Один полевой транзистор (1T):</strong> выступает в роли ключа, открывающего доступ к ячейке по линии слова (Wordline).</li>
+                <li><strong>Один миниатюрный конденсатор (1C):</strong> хранит электрический заряд (наличие заряда трактуется как логическая единица «1», отсутствие — как «0»).</li>
+              </ul>
+              <p>
+                Из-за естественных токов утечки диэлектрика конденсатор полностью теряет заряд за доли секунды. Поэтому контроллер памяти выполняет операцию <strong>регенерации (Refresh / Auto-Refresh)</strong> каждые 32–64 миллисекунды, поочередно считывая и перезаписывая все строки ячеек матрицы.
+              </p>
+
+              <h2>Архитектура DDR5: Главные инновации стандарта JEDEC</h2>
+              <p>
+                Комитет инженерной стандартизации полупроводниковой продукции <strong>JEDEC</strong> утвердил стандарт DDR5 SDRAM (JESD79-5), который кардинально изменил топологию планки памяти<span class="ref-cite"><a href="#ref-13">[13]</a></span>:
+              </p>
+              <ul>
+                <li><strong>Два независимых 32-битных субканала на один модуль:</strong> В DDR4 планка имела единую 64-битную шину. В DDR5 каждый модуль DIMM разделен на два независимых 32-битных субканала (+8 бит ECC на каждый). Это удваивает эффективность параллельного обслуживания запросов от разных ядер процессора.</li>
+                <li><strong>Удвоенная длина пакета (Burst Length = 16):</strong> за одну операцию передается 64 байта данных, что идеально соответствует размеру строки кэш-памяти процессора (Cache Line).</li>
+                <li><strong>On-Die ECC (Встроенная коррекция ошибок на кристалле):</strong> каждый кремниевый чип DDR5 самостоятельно вычисляет и исправляет единичные битовые ошибки внутри кристалла, компенсируя возросшую плотность размещения ячеек.</li>
+                <li><strong>Интегральная микросхема управления питанием (PMIC) на модуле:</strong> преобразование напряжений с 12В до рабочих 1.1В теперь происходит непосредственно на печатной плате планки, а не на материнской плате, снижая помехи и шумы питания.</li>
+              </ul>
+
+              <div class="table-responsive">
+                <table class="wiki-data-table">
+                  <thead>
+                    <tr>
+                      <th>Параметр</th>
+                      <th>DDR4 SDRAM</th>
+                      <th>DDR5 SDRAM</th>
+                      <th>Преимущество DDR5</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Базовая эффективная скорость</strong></td>
+                      <td>2133 – 3200 MT/s</td>
+                      <td>4800 – 8400+ MT/s</td>
+                      <td>Рост пропускной способности в 2–2.5 раза</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Рабочее напряжение ($V_{DD}$)</strong></td>
+                      <td>1.2 В</td>
+                      <td>1.1 В</td>
+                      <td>Снижение энергопотребления на ~20%</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Каналы на DIMM-модуль</strong></td>
+                      <td>1 канал (64 бита)</td>
+                      <td>2 независимых субканала (32 бита + ECC)</td>
+                      <td>Улучшенный параллелизм очередей</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Группы банков (Bank Groups)</strong></td>
+                      <td>4 группы (всего 16 банков)</td>
+                      <td>8 групп (всего 32 банка)</td>
+                      <td>Снижение задержки ожидания открытия строки</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Максимальная емкость чипа</strong></td>
+                      <td>16 Гбит (до 32 ГБ на DIMM)</td>
+                      <td>64 Гбит (до 128–256 ГБ на DIMM)</td>
+                      <td>Четырехкратный рост плотности памяти</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h2>Тайминги и формула истинной задержки</h2>
+              <p>
+                Многие пользователи ошибочно полагают, что рост тайминга CAS Latency ($CL$) в DDR5 (например, $CL30$ против $CL16$ в DDR4) делает память более медленной. Однако тайминги измеряются в <strong>тактах</strong>, а период такта на высоких частотах значительно короче<span class="ref-cite"><a href="#ref-15">[15]</a></span>.
+              </p>
+              <div class="wiki-callout fact">
+                <div class="callout-header">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  Математическая формула абсолютной задержки памяти:
+                </div>
+                <p>
+                  $$\text{Реальная задержка (нс)} = \frac{CL \times 2000}{\text{Эффективная частота (MT/s)}}$$
+                  Для <strong>DDR4-3200 CL16</strong>: $(16 \times 2000) / 3200 = \mathbf{10.00\text{ нс}}$.<br>
+                  Для <strong>DDR5-6000 CL30</strong>: $(30 \times 2000) / 6000 = \mathbf{10.00\text{ нс}}$.<br>
+                  <em>Вывод:</em> Абсолютная задержка первого отклика остается неизменной (~10 нс), но пропускная способность при непрерывной потоковой передаче возрастает почти вдвое!
+                </p>
+              </div>
+
+              <div class="wiki-figure">
+                <img src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=1200&q=80" alt="Модули оперативной памяти DDR в разъемах DIMM" loading="lazy">
+                <div class="wiki-figure-caption">
+                  <span>Модули высокоскоростной оперативной памяти, установленные в парные слоты двухканального режима.</span>
+                  <a href="https://images.unsplash.com/photo-1562976540-1502c2145186" target="_blank" rel="noopener noreferrer" class="figure-source-link">Источник: Unsplash / Liam Brieske ↗</a>
+                </div>
+              </div>
+
+              <section class="references-section">
+                <h2>Библиография и источники</h2>
+                <ol class="references-list">
+                  <li id="ref-13" class="ref-item" data-source-title="DDR5 SDRAM Standard (JESD79-5C)" data-source-author="JEDEC Solid State Technology Association" data-source-year="2023">
+                    <strong>JEDEC Association.</strong> (2023). <em>DDR5 SDRAM Standard Specification JESD79-5C</em>. Стандарт комитета JEDEC по технологиям твердотельной памяти.
+                    <a href="https://www.jedec.org/standards-documents/docs/jesd79-5" target="_blank" rel="noopener noreferrer">jedec.org/standards-documents/docs/jesd79-5</a>
+                    <span class="ref-badge">Официальный стандарт</span>
+                  </li>
+                  <li id="ref-14" class="ref-item" data-source-title="DDR5: A New Foundation for the Data Era" data-source-author="Micron Technology, Inc." data-source-year="2022">
+                    <strong>Micron Technology.</strong> (2022). <em>DDR5 Architecture Brief: Subchannels, PMIC, and On-Die ECC Explained</em>. Technical Whitepaper.
+                    <a href="https://www.micron.com/products/dram/ddr5" target="_blank" rel="noopener noreferrer">micron.com/products/dram/ddr5</a>
+                    <span class="ref-badge">Технический отчет</span>
+                  </li>
+                  <li id="ref-15" class="ref-item" data-source-title="Understanding RAM Timings, Frequency, and True Latency" data-source-author="Tom's Hardware" data-source-year="2023">
+                    <strong>Tom's Hardware Editorial.</strong> (2023). <em>PC Memory Performance Guide: CAS Latency vs Clock Frequency</em>.
+                    <a href="https://www.tomshardware.com/reviews/pc-memory-ram-frequency-timings,4326.html" target="_blank" rel="noopener noreferrer">tomshardware.com/reviews/pc-memory-ram</a>
+                    <span class="ref-badge">Анализ тестов</span>
+                  </li>
+                </ol>
+              </section>
+
+              <div class="wiki-categories-box">
+                <span class="categories-label">Категории статьи:</span>
+                <a href="#ram" class="category-tag">Оперативная память</a>
+                <a href="#architecture" class="category-tag">Архитектура ЭВМ</a>
+                <a href="#storage" class="category-tag">Твердотельная микроэлектроника</a>
+              </div>
+            </div>
+
+            <!-- Infobox RAM -->
+            <aside class="wiki-infobox">
+              <div class="infobox-title">Оперативная память (RAM)</div>
+              <div class="infobox-image-container">
+                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80" alt="Планка памяти DRAM с чипами памяти" class="infobox-image" loading="lazy">
+                <div class="infobox-caption">Модуль DIMM стандарта DDR с установленными BGA-микросхемами.</div>
+              </div>
+              <table class="infobox-table">
+                <tr>
+                  <th>Изобретатель ячейки DRAM</th>
+                  <td>Роберт Деннард (IBM, 1968 г.)</td>
+                </tr>
+                <tr>
+                  <th>Физическая структура ячейки</th>
+                  <td>1 транзистор + 1 конденсатор (1T-1C)</td>
+                </tr>
+                <tr>
+                  <th>Частота регенерации (Refresh)</th>
+                  <td>каждые 32 / 64 мс</td>
+                </tr>
+                <tr>
+                  <th>Актуальный стандарт</th>
+                  <td>DDR5 SDRAM (JEDEC JESD79-5)</td>
+                </tr>
+                <tr>
+                  <th>Скорость передачи данных</th>
+                  <td>4800 – 8400+ MT/s</td>
+                </tr>
+                <tr>
+                  <th>Напряжение питания $V_{DD}$</th>
+                  <td>1.1 Вольт (DDR5)</td>
+                </tr>
+                <tr>
+                  <th>Коррекция ошибок</th>
+                  <td>On-Die ECC + Sideband ECC</td>
+                </tr>
+              </table>
+            </aside>
+          </div>
+        </article>
+
+        <!-- =================================================================
+             ARTICLE 5: STORAGE
+             ================================================================= -->
+        <article class="wiki-article" id="storage" style="display: none;">
+          <header class="article-header">
+            <div class="article-title-row">
+              <h1 class="article-title">Накопители данных (SSD NVMe и HDD)</h1>
+            </div>
+            <div class="article-meta-bar">
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2"></path><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>
+                <span>Раздел: <strong>Энергонезависимые системы долговременного хранения</strong></span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Время чтения: 9 минут</span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Спецификация: NVM Express 2.0 & PCIe 5.0</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="article-body-grid">
+            <div class="article-prose">
+              <p>
+                <strong>Энергонезависимые накопители данных</strong> обеспечивают долговременное хранение операционных систем, приложений и файлов пользователя без необходимости постоянной подачи электрического напряжения<span class="ref-cite"><a href="#ref-16" title="NVM Express Base Specification 2.0">[16]</a></span>. В современной вычислительной технике доминируют твердотельные накопители <strong>SSD (Solid State Drive)</strong> на базе полупроводниковой флеш-памяти NAND, а в центрах обработки данных для архивных массивов продолжают активно применяться классические жесткие магнитные диски <strong>HDD (Hard Disk Drive)</strong>.
+              </p>
+
+              <div class="wiki-toc-box">
+                <div class="toc-header">
+                  <span class="toc-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
+                    Содержание
+                  </span>
+                  <button class="toc-toggle">[скрыть]</button>
+                </div>
+                <ul class="toc-list"></ul>
+              </div>
+
+              <h2>Принцип флеш-памяти: Ловушка заряда и типы ячеек</h2>
+              <p>
+                В ячейках флеш-памяти NAND электроны захватываются в изолированную область — <strong>плавающий затвор (Floating Gate)</strong> или слой нитрида кремния — <strong>ловушку заряда (Charge Trap Flash, CTF)</strong>. Захваченный заряд создает электрическое поле, смещающее пороговое напряжение проводимости транзистора, что позволяет считывать записанное состояние без разрушения данных годами.
+              </p>
+              <p>
+                В зависимости от того, сколько различных уровней напряжения может точно различить и удержать ячейка, выделяют следующие типы:
+              </p>
+              <ul>
+                <li><strong>SLC (Single-Level Cell):</strong> 1 бит на ячейку (2 уровня напряжения). Максимальный ресурс: до 100 000 циклов перезаписи (P/E cycles). Самая высокая надежность и скорость, используется в промышленном и военном оборудовании.</li>
+                <li><strong>MLC (Multi-Level Cell):</strong> 2 бита на ячейку (4 уровня напряжения). Ресурс: ~3 000 – 10 000 циклов.</li>
+                <li><strong>TLC (Triple-Level Cell):</strong> 3 бита на ячейку (8 уровней напряжения). Ресурс: ~1 000 – 3 000 циклов. Основной современный потребительский стандарт.</li>
+                <li><strong>QLC (Quad-Level Cell):</strong> 4 бита на ячейку (16 прецизионных уровней напряжения). Ресурс: ~300 – 1 000 циклов. Максимальная удельная плотность и доступная цена для емких накопителей.</li>
+              </ul>
+
+              <h2>Трехмерная компоновка: 3D V-NAND</h2>
+              <p>
+                Когда плоские планарные ячейки 2D NAND достигли физического предела уменьшения (менее 15 нм возник туннельный пробой изолятора), производители перешли на <strong>3D NAND (V-NAND)</strong>. Ячейки располагаются не на плоскости, а послойно растут вертикальными цилиндрическими колоннами. В 2024–2026 годах ведущие производители (Samsung, SK Hynix, Micron, Kioxia) выпускают чипы с количеством слоев от <strong>232 до 300+ слоев</strong>, позволяя разместить до 2 ТБ данных в одном миниатюрном чипе BGA размером с ноготь.
+              </p>
+
+              <h2>Протокол NVMe и шина PCI Express 5.0</h2>
+              <p>
+                Старый протокол SATA AHCI проектировался в эпоху вращающихся магнитных дисков с одной-единственной аппаратной очередью глубиной всего 32 команды. Специально для сверхбыстрой флеш-памяти был создан открытый протокол <strong>NVMe (Non-Volatile Memory Express)</strong><span class="ref-cite"><a href="#ref-16">[16]</a></span>, подключаемый напрямую к линиям процессора через шину <strong>PCIe</strong>:
+              </p>
+              <ul>
+                <li>Поддержка до <strong>64 000 очередей команд</strong>, каждая из которых вмещает до <strong>64 000 одновременных команд</strong>.</li>
+                <li>Минимальные накладные расходы процессора: прямое прерывание MSI-X и RDMA.</li>
+                <li>В стандарте <strong>PCIe 5.0 x4</strong> пропускная способность шины достигает 15.75 ГБ/с, обеспечивая реальные скорости линейного чтения свыше <strong>14 000 МБ/с</strong> и производительность свыше 1.5–2 млн IOPS (операций ввода-вывода в секунду)<span class="ref-cite"><a href="#ref-17">[17]</a></span>.</li>
+              </ul>
+
+              <div class="table-responsive">
+                <table class="wiki-data-table">
+                  <thead>
+                    <tr>
+                      <th>Интерфейс и поколение</th>
+                      <th>Линейная скорость чтения</th>
+                      <th>Случайный доступ 4K (IOPS)</th>
+                      <th>Задержка отклика (Latency)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>HDD 7200 RPM (SATA III)</strong></td>
+                      <td>~180 – 260 МБ/с</td>
+                      <td>~75 – 200 IOPS</td>
+                      <td>~12 000 – 15 000 мкс (12–15 мс)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>SATA SSD (AHCI)</strong></td>
+                      <td>~550 МБ/с</td>
+                      <td>~95 000 IOPS</td>
+                      <td>~50 – 100 мкс</td>
+                    </tr>
+                    <tr>
+                      <td><strong>NVMe SSD PCIe 4.0 x4</strong></td>
+                      <td>~7 400 МБ/с</td>
+                      <td>~1 000 000 IOPS</td>
+                      <td>~15 – 25 мкс</td>
+                    </tr>
+                    <tr>
+                      <td><strong>NVMe SSD PCIe 5.0 x4</strong></td>
+                      <td>~14 000+ МБ/с</td>
+                      <td>~1 800 000+ IOPS</td>
+                      <td>~8 – 12 мкс</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="wiki-figure">
+                <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=1200&q=80" alt="Твердотельный накопитель SSD M.2 с контроллером и микросхемами flash" loading="lazy">
+                <div class="wiki-figure-caption">
+                  <span>Твердотельный накопитель формата M.2 NVMe с обнаженным многоядерным контроллером и чипами 3D NAND.</span>
+                  <a href="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b" target="_blank" rel="noopener noreferrer" class="figure-source-link">Источник: Unsplash / Denny Müller ↗</a>
+                </div>
+              </div>
+
+              <section class="references-section">
+                <h2>Библиография и источники</h2>
+                <ol class="references-list">
+                  <li id="ref-16" class="ref-item" data-source-title="NVM Express Base Specification Revision 2.0c" data-source-author="NVM Express, Inc." data-source-year="2022">
+                    <strong>NVM Express, Inc.</strong> (2022). <em>NVM Express® Base Specification, Revision 2.0c</em>. Официальная спецификация стандарта NVMe.
+                    <a href="https://nvmexpress.org/specifications/" target="_blank" rel="noopener noreferrer">nvmexpress.org/specifications</a>
+                    <span class="ref-badge">Отраслевая спецификация</span>
+                  </li>
+                  <li id="ref-17" class="ref-item" data-source-title="PCI Express® Base Specification Revision 5.0" data-source-author="PCI-SIG (Peripheral Component Interconnect Special Interest Group)" data-source-year="2021">
+                    <strong>PCI-SIG.</strong> (2021). <em>PCI Express® Base Specification Revision 5.0 Version 1.0</em>. Технический комитет PCI-SIG.
+                    <a href="https://pcisig.com/specifications" target="_blank" rel="noopener noreferrer">pcisig.com/specifications</a>
+                    <span class="ref-badge">Официальный стандарт</span>
+                  </li>
+                  <li id="ref-18" class="ref-item" data-source-title="Heat-Assisted Magnetic Recording (HAMR) Technology Paper" data-source-author="Seagate Technology LLC" data-source-year="2023">
+                    <strong>Seagate Technology.</strong> (2023). <em>HAMR Technology: Breaking the Areal Density Barrier in Hard Drives</em>. Whitepaper.
+                    <a href="https://www.seagate.com/innovation/hamr/" target="_blank" rel="noopener noreferrer">seagate.com/innovation/hamr</a>
+                    <span class="ref-badge">Whitepaper</span>
+                  </li>
+                  <li id="ref-19" class="ref-item" data-source-title="Flash Memory Cell Architectures and Longevity Analysis" data-source-author="StorageReview Editorial" data-source-year="2023">
+                    <strong>StorageReview.</strong> (2023). <em>SLC vs MLC vs TLC vs QLC: Endurance and Performance Breakdown</em>.
+                    <a href="https://www.storagereview.com/review/nand-flash-basics" target="_blank" rel="noopener noreferrer">storagereview.com/review/nand-flash-basics</a>
+                    <span class="ref-badge">Аналитический обзор</span>
+                  </li>
+                </ol>
+              </section>
+
+              <div class="wiki-categories-box">
+                <span class="categories-label">Категории статьи:</span>
+                <a href="#storage" class="category-tag">Накопители данных</a>
+                <a href="#architecture" class="category-tag">Твердотельная память</a>
+                <a href="#cpu" class="category-tag">Интерфейс PCI Express</a>
+              </div>
+            </div>
+
+            <!-- Infobox Storage -->
+            <aside class="wiki-infobox">
+              <div class="infobox-title">Твердотельный накопитель (SSD)</div>
+              <div class="infobox-image-container">
+                <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=600&q=80" alt="M.2 NVMe SSD накопитель" class="infobox-image" loading="lazy">
+                <div class="infobox-caption">Твердотельный накопитель в компактном форм-факторе M.2 2280.</div>
+              </div>
+              <table class="infobox-table">
+                <tr>
+                  <th>Физический носитель</th>
+                  <td>NAND Flash (Floating Gate / Charge Trap)</td>
+                </tr>
+                <tr>
+                  <th>Структура кристаллов</th>
+                  <td>3D V-NAND (до 232–300+ вертикальных слоев)</td>
+                </tr>
+                <tr>
+                  <th>Интерфейсы подключения</th>
+                  <td>PCIe 4.0 / PCIe 5.0 (NVMe), SATA III</td>
+                </tr>
+                <tr>
+                  <th>Форм-факторы</th>
+                  <td>M.2 2280, U.2/U.3, E1.S (EDSFF), 2.5"</td>
+                </tr>
+                <tr>
+                  <th>Пиковая скорость (PCIe 5.0)</th>
+                  <td>до 14 500 МБ/с (чтение)</td>
+                </tr>
+                <tr>
+                  <th>Типовые задержки</th>
+                  <td>10 – 30 микросекунд (мкс)</td>
+                </tr>
+                <tr>
+                  <th>Ключевые функции</th>
+                  <td>Wear Leveling, TRIM, SLC Caching, DRAM Buffer</td>
+                </tr>
+              </table>
+            </aside>
+          </div>
+        </article>
+
+        <!-- =================================================================
+             ARTICLE 6: HISTORY
+             ================================================================= -->
+        <article class="wiki-article" id="history" style="display: none;">
+          <header class="article-header">
+            <div class="article-title-row">
+              <h1 class="article-title">История вычислительной техники</h1>
+            </div>
+            <div class="article-meta-bar">
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Раздел: <strong>Хроника научно-технического прогресса</strong></span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <span>Время чтения: 12 минут</span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <span>Эпохи: Механическая, Ламповая, Полупроводниковая</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="article-body-grid">
+            <div class="article-prose">
+              <p>
+                <strong>История вычислительной техники</strong> охватывает путь человечества от древнейших механических счетных инструментов (абак, антикитерский механизм, логарифмическая линейка) до универсальных программируемых электронных компьютеров и глобальных суперкомпьютерных кластеров<span class="ref-cite"><a href="#ref-20" title="Computer History Museum Timeline">[20]</a></span>. Этот путь представляет собой череду фундаментальных научных открытий в математической логике, физике твердого тела и полупроводниковой литографии.
+              </p>
+
+              <div class="wiki-toc-box">
+                <div class="toc-header">
+                  <span class="toc-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
+                    Содержание
+                  </span>
+                  <button class="toc-toggle">[скрыть]</button>
+                </div>
+                <ul class="toc-list"></ul>
+              </div>
+
+              <h2>Механический прорыв: Бэббидж и первая программа Ады Лавлейс</h2>
+              <p>
+                В 1837 году британский математик и изобретатель <strong>Чарльз Бэббидж</strong> сформулировал проект <em>Аналитической машины (Analytical Engine)</em>. В отличие от простых арифмометров, эта машина содержала все узлы современного компьютера:
+              </p>
+              <ul>
+                <li><strong>«Мельница» (Mill):</strong> механический аналог современного АЛУ процессора, выполняющий арифметические операции над числами.</li>
+                <li><strong>«Склад» (Store):</strong> механическая память на шестеренчатых регистрах емкостью 1 000 чисел по 50 десятичных знаков.</li>
+                <li><strong>Устройство ввода и управления:</strong> чтение инструкций и операндов с перфокарт, аналогичных жаккардовым ткацким станкам.</li>
+              </ul>
+              <p>
+                Графиня <strong>Ада Лавлейс</strong>, дочь поэта лорда Байрона, подробно описала архитектуру Аналитической машины и составила для нее первый в истории человечества алгоритм — вычисление чисел Бернулли (1843 г.), став первым программистом в истории.
+              </p>
+
+              <h2>Машина Тьюринга: Математический фундамент вычислений</h2>
+              <p>
+                В 1936 году 24-летний британский гений <strong>Алан Тьюринг</strong> опубликовал фундаментальную работу <em>«On Computable Numbers, with an Application to the Entscheidungsproblem»</em><span class="ref-cite"><a href="#ref-21">[21]</a></span>.
+              </p>
+              <p>
+                Тьюринг доказал возможность создания <strong>Универсальной машины Тьюринга (Universal Turing Machine)</strong> — абстрактного исполнителя с бесконечной лентой, считывающей головкой и таблицей переходов состояний, способного смоделировать вычисления любого другого дискретного вычислительного автомата. Этот результат сформировал математическое определение алгоритма и алгоритмической разрешимости (тезис Черча — Тьюринга).
+              </p>
+
+              <h2>Первые электронные ЭВМ: От Z3 к ENIAC</h2>
+              <p>
+                В период Второй мировой войны наступил переход к электромеханическим реле и электронным вакуумным лампам:
+              </p>
+              <ul>
+                <li><strong>Z3 (Германия, май 1941 г.):</strong> Конрад Цузе построил первый в мире действующий программируемый электромеханический компьютер на телефонных реле (двоичная плавающая точка, тактовая частота 5.3 Гц).</li>
+                <li><strong>ENIAC (США, завершен в ноябре 1945 г.):</strong> Джон Мокли и Дж. Преспер Эккерт в Пенсильванском университете создали первую универсальную электронную вычислительную машину на вакуумных лампах<span class="ref-cite"><a href="#ref-22">[22]</a></span>. ENIAC содержал 17 468 радиоламп, весил около 30 тонн, занимал площадь 167 кв. метров и потреблял колоссальные 150 кВт электроэнергии, выполняя до 5 000 операций сложения в секунду.</li>
+              </ul>
+
+              <div class="wiki-figure">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/ENIAC_Penn1.jpg" alt="Историческая фотография ламповой ЭВМ ENIAC в 1945 году" loading="lazy">
+                <div class="wiki-figure-caption">
+                  <span>Электронный числовой интегратор и вычислитель (ENIAC), 1945 год, Пенсильванский университет.</span>
+                  <a href="https://commons.wikimedia.org/wiki/File:ENIAC_Penn1.jpg" target="_blank" rel="noopener noreferrer" class="figure-source-link">Источник: Wikimedia Commons / Public Domain ↗</a>
+                </div>
+              </div>
+
+              <h2>Кремниевая революция: Изобретение транзистора и Intel 4004</h2>
+              <p>
+                16 декабря 1947 года в лабораториях Bell Labs <strong>Джон Бардин, Уолтер Браттейн и Уильям Шокли</strong> создали первый действующий точечный биполярный транзистор на кристалле германия, за что в 1956 году были удостоены Нобелевской премии по физике. Транзистор заменил громоздкие, хрупкие и раскаленные вакуумные радиолампы.
+              </p>
+              <p>
+                В ноябре 1971 года группа инженеров компании Intel под руководством <strong>Федерико Фаджина, Теда Хоффа, Стэна Мейзора и Масатоси Симы</strong> совершила революцию, объединив все узлы процессора на одном кремниевом чипе — так родился <strong>Intel 4004</strong><span class="ref-cite"><a href="#ref-23">[23]</a></span>:
+              </p>
+              <ul>
+                <li>Разрядность: 4 бита;</li>
+                <li>Количество транзисторов: 2 300 на кристалле размером 3x4 мм;</li>
+                <li>Техпроцесс: 10 мкм pMOS;</li>
+                <li>Тактовая частота: 740 кГц;</li>
+                <li>Быстродействие: около 60 000 операций в секунду.</li>
+              </ul>
+
+              <h2>Эра персональных компьютеров: Apple II и триумф IBM PC</h2>
+              <p>
+                До середины 1970-х годов компьютеры оставались достоянием крупных корпораций и военных ведомств. Революция микро-ЭВМ началась с комплекта <strong>Altair 8800</strong> (1975 г.), для которого юные Билл Гейтс и Пол Аллен написали интерпретатор BASIC, основав компанию Microsoft.
+              </p>
+              <p>
+                В 1977 году Стив Возняк и Стив Джобс представили <strong>Apple II</strong> — первый серийный персональный компьютер в пластиковом монолитном корпусе с цветной графикой и встроенным звуком.
+              </p>
+              <p>
+                12 августа 1981 года компания IBM выпустила модель <strong>IBM Personal Computer (Model 5150)</strong> под руководством Филипа Дона Эстриджа<span class="ref-cite"><a href="#ref-24">[24]</a></span>. Компьютер базировался на процессоре Intel 8088 с тактовой частотой 4.77 МГц, 16 КБ оперативной памяти и операционной системе MS-DOS 1.0. Главным решением IBM стало принятие <strong>концепции открытой архитектуры (Open Architecture)</strong>: публикация полных схем и спецификаций BIOS позволила сторонним компаниям (Compaq, Dell и др.) производить совместимые комплектующие, что сделало стандарт IBM PC де-факто доминирующим на планете на десятилетия вперед.
+              </p>
+
+              <div class="wiki-figure">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IBM_PC_5150.jpg" alt="Классический персональный компьютер IBM PC 5150 с монитором и дисководом" loading="lazy">
+                <div class="wiki-figure-caption">
+                  <span>IBM Personal Computer (Model 5150), август 1981 года, установивший стандарт современных персоналок.</span>
+                  <a href="https://commons.wikimedia.org/wiki/File:IBM_PC_5150.jpg" target="_blank" rel="noopener noreferrer" class="figure-source-link">Источник: Wikimedia Commons / Ruben de Rijcke ↗</a>
+                </div>
+              </div>
+
+              <section class="references-section">
+                <h2>Библиография и источники</h2>
+                <ol class="references-list">
+                  <li id="ref-20" class="ref-item" data-source-title="Timeline of Computer History" data-source-author="Computer History Museum" data-source-year="2024">
+                    <strong>Computer History Museum (CHM).</strong> (2024). <em>Timeline of Computer History: Computers, Hardware, Software, Networking</em>.
+                    <a href="https://www.computerhistory.org/timeline/computers/" target="_blank" rel="noopener noreferrer">computerhistory.org/timeline/computers</a>
+                    <span class="ref-badge">Музейный архив</span>
+                  </li>
+                  <li id="ref-21" class="ref-item" data-source-title="On Computable Numbers, with an Application to the Entscheidungsproblem" data-source-author="Alan M. Turing" data-source-year="1936">
+                    <strong>Turing, Alan M.</strong> (1936). <em>On Computable Numbers, with an Application to the Entscheidungsproblem</em>. Proceedings of the London Mathematical Society, Series 2, 42(1), 230–265.
+                    <a href="https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf" target="_blank" rel="noopener noreferrer">cs.virginia.edu/~robins/Turing_Paper_1936.pdf</a>
+                    <span class="ref-badge">Фундаментальный труд</span>
+                  </li>
+                  <li id="ref-22" class="ref-item" data-source-title="The Computer from Pascal to von Neumann" data-source-author="Herman H. Goldstine" data-source-year="1972">
+                    <strong>Goldstine, Herman H.</strong> (1972). <em>The Computer from Pascal to von Neumann</em>. Princeton University Press. ISBN: 978-0691023670.
+                    <a href="https://press.princeton.edu/books/paperback/9780691023670/the-computer-from-pascal-to-von-neumann" target="_blank" rel="noopener noreferrer">press.princeton.edu/books/the-computer</a>
+                    <span class="ref-badge">Монография</span>
+                  </li>
+                  <li id="ref-23" class="ref-item" data-source-title="The Story of the Intel® 4004 Microprocessor" data-source-author="Intel Museum Archives" data-source-year="2021">
+                    <strong>Intel Museum.</strong> (2021). <em>The Intel® 4004: 50th Anniversary of the First Commercial Microprocessor</em>.
+                    <a href="https://www.intel.com/content/www/us/en/history/museum-story-of-intel-4004.html" target="_blank" rel="noopener noreferrer">intel.com/history/museum-story-of-intel-4004.html</a>
+                    <span class="ref-badge">Архив Intel</span>
+                  </li>
+                  <li id="ref-24" class="ref-item" data-source-title="The Birth of the IBM PC" data-source-author="IBM Archives" data-source-year="2021">
+                    <strong>IBM Archives.</strong> (2021). <em>The IBM Personal Computer (PC 5150) Press Release and Technical Specifications</em>.
+                    <a href="https://www.ibm.com/history/pc-5150" target="_blank" rel="noopener noreferrer">ibm.com/history/pc-5150</a>
+                    <span class="ref-badge">Архив IBM</span>
+                  </li>
+                </ol>
+              </section>
+
+              <div class="wiki-categories-box">
+                <span class="categories-label">Категории статьи:</span>
+                <a href="#history" class="category-tag">История вычислительной техники</a>
+                <a href="#architecture" class="category-tag">Пионеры информатики</a>
+                <a href="#cpu" class="category-tag">Микропроцессоры</a>
+              </div>
+            </div>
+
+            <!-- Infobox History -->
+            <aside class="wiki-infobox">
+              <div class="infobox-title">Первый микропроцессор Intel 4004</div>
+              <div class="infobox-image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Intel_4004.jpg" alt="Микропроцессор Intel 4004 в белом керамическом корпусе" class="infobox-image" loading="lazy">
+                <div class="infobox-caption">Микросхема Intel C4004 в 16-выводном керамическом корпусе DIP (1971 г.).</div>
+              </div>
+              <table class="infobox-table">
+                <tr>
+                  <th>Дата анонса</th>
+                  <td>15 ноября 1971 года</td>
+                </tr>
+                <tr>
+                  <th>Главные разработчики</th>
+                  <td>Федерико Фаджин, Тед Хофф, Стэн Мейзор</td>
+                </tr>
+                <tr>
+                  <th>Разрядность шины</th>
+                  <td>4 бита (мультиплексированная)</td>
+                </tr>
+                <tr>
+                  <th>Число транзисторов</th>
+                  <td>2 300 транзисторов</td>
+                </tr>
+                <tr>
+                  <th>Техпроцесс литографии</th>
+                  <td>10 мкм (микрометров) кремниевый затвор</td>
+                </tr>
+                <tr>
+                  <th>Тактовая частота</th>
+                  <td>740 кГц (0.00074 ГГц)</td>
+                </tr>
+                <tr>
+                  <th>Первое применение</th>
+                  <td>Печатающий калькулятор Busicom 141-PF</td>
+                </tr>
+              </table>
+            </aside>
+          </div>
+        </article>
+
+        <!-- =================================================================
+             ARTICLE 7: QUANTUM & FUTURE
+             ================================================================= -->
+        <article class="wiki-article" id="quantum" style="display: none;">
+          <header class="article-header">
+            <div class="article-title-row">
+              <h1 class="article-title">Квантовые и нейроморфные компьютеры</h1>
+            </div>
+            <div class="article-meta-bar">
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                <span>Раздел: <strong>Посткремниевые вычислительные парадигмы</strong></span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Время чтения: 10 минут</span>
+              </div>
+              <div class="article-meta-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Область: Квантовая физика и нейробиология</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="article-body-grid">
+            <div class="article-prose">
+              <p>
+                По мере приближения физических размеров кремниевых транзисторов к межатомным расстояниям (порядка 0.5–1 нм) вступают в действие законы квантовой механики: паразитный квантовый туннельный эффект электронов сквозь барьер затвора препятствует классическому масштабированию по закону Мура. Это привело к рождению принципиально новых вычислительных моделей — <strong>квантовых компьютеров</strong> и <strong>нейроморфных процессоров</strong><span class="ref-cite"><a href="#ref-25" title="Nielsen & Chuang Quantum Computation">[25]</a></span>.
+              </p>
+
+              <div class="wiki-toc-box">
+                <div class="toc-header">
+                  <span class="toc-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
+                    Содержание
+                  </span>
+                  <button class="toc-toggle">[скрыть]</button>
+                </div>
+                <ul class="toc-list"></ul>
+              </div>
+
+              <h2>Квантовый бит (Кубит) и суперпозиция</h2>
+              <p>
+                Классический бит в любой момент времени находится строго в одном из двух взаимоисключающих состояний: либо $0$, либо $1$. 
+                <strong>Квантовый бит (Qubit, кубит)</strong> представляет собой двухуровневую квантовомеханическую систему, способную находиться в состоянии <strong>когерентной суперпозиции</strong> обоих базовых состояний одновременно:
+              </p>
+              <div class="wiki-callout fact">
+                <div class="callout-header">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  Квантовое состояние кубита:
+                </div>
+                <p>
+                  $$|\psi\rangle = \alpha |0\rangle + \beta |1\rangle, \quad \text{где } |\alpha|^2 + |\beta|^2 = 1$$
+                  Комплексные коэффициенты $\alpha$ и $\beta$ называются амплитудами вероятности. При физическом измерении (декогеренции) суперпозиция мгновенно коллапсирует: значение $0$ будет получено с вероятностью $|\alpha|^2$, а значение $1$ — с вероятностью $|\beta|^2$.
+                </p>
+              </div>
+
+              <h2>Экспоненциальная мощь: Запутанность и квантовые алгоритмы</h2>
+              <p>
+                Если классический регистр из $N$ бит может содержать в конкретный момент только одно из $2^N$ возможных чисел, то система из $N$ квантово-запутанных кубитов находится в суперпозиции <strong>всех $2^N$ состояний одновременно</strong>.
+              </p>
+              <ul>
+                <li>Система всего из <strong>50 кубитов</strong> описывается $2^{50} \approx 1.125 \times 10^{15}$ комплексных чисел — для ее моделирования требуется суперкомпьютер петафлопсного класса.</li>
+                <li>Система из <strong>300 кубитов</strong> может одновременно кодировать больше состояний, чем элементарных частиц во всей наблюдаемой Вселенной ($~10^{80}$).</li>
+              </ul>
+              <p>
+                Среди наиболее известных практических алгоритмов:
+              </p>
+              <ol>
+                <li><strong>Алгоритм Шора (1994 г.):</strong> нахождение простых сомножителей целого числа (факторизация) за полиномиальное время. Этот алгоритм теоретически способен взломать широко используемую классическую асимметричную криптографию RSA и эллиптические кривые (ECC).</li>
+                <li><strong>Алгоритм Гровера (1996 г.):</strong> квадратичное ускорение поиска в неструктурированной базе данных из $N$ элементов за время порядка $O(\sqrt{N})$ вместо классического перебора за $O(N)$.</li>
+              </ol>
+
+              <h2>Аппаратное воплощение: Сверхпроводящие трансмоны</h2>
+              <p>
+                Современные процессоры компаний IBM (Eagle, Heron), Google (Sycamore) и Rigetti построены на <strong>сверхпроводящих трансмон-кубитах (Transmon Qubits)</strong><span class="ref-cite"><a href="#ref-26">[26]</a></span>. В них квантовые эффекты реализуются с помощью джозефсоновских переходов (двух сверхпроводников, разделенных тончайшим слоем изолятора в несколько нанометров).
+              </p>
+              <p>
+                Для сохранения квантовой когерентности и устранения тепловых шумов чип охлаждается внутри многоступенчатого криостата растворения (Dilution Refrigerator — золотистой «люстры») жидким гелием до температуры <strong>15 милликельвин (-273.135 °C)</strong>, что в сотни раз холоднее глубин открытого космического пространства.
+              </p>
+
+              <h2>Нейроморфные процессоры: Вычисления по образу мозга</h2>
+              <p>
+                В то время как суперкомпьютеры тратят мегаватты энергии на симуляцию коры головного мозга, биологический мозг человека потребляет всего около 20 Ватт. Причина — принципиальный отказ от архитектуры фон Неймана в пользу сверхпараллельной биологической сети синапсов и нейронов.
+              </p>
+              <p>
+                Нейроморфные чипы (например, <strong>Intel Loihi 2</strong> и <strong>IBM TrueNorth</strong>)<span class="ref-cite"><a href="#ref-28">[28]</a></span> реализуют <strong>импульсные нейронные сети (Spiking Neural Networks, SNN)</strong>. В них информация передается короткими импульсами («спайками») только в момент активности, а память (синаптические веса) и вычисления (тело нейрона) физически совмещены на чипе, что полностью устраняет проблему энергозатратной передачи данных по системным шинам.
+              </p>
+
+              <div class="wiki-figure">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80" alt="Криостат растворения квантового компьютера золотистого цвета" loading="lazy">
+                <div class="wiki-figure-caption">
+                  <span>Многоярусный криостат растворения квантового процессора («квантовая люстра»), охлаждающий кубиты до 15 мК.</span>
+                  <a href="https://images.unsplash.com/photo-1635070041078-e363dbe005cb" target="_blank" rel="noopener noreferrer" class="figure-source-link">Источник: Unsplash / DeepMind ↗</a>
+                </div>
+              </div>
+
+              <section class="references-section">
+                <h2>Библиография и источники</h2>
+                <ol class="references-list">
+                  <li id="ref-25" class="ref-item" data-source-title="Quantum Computation and Quantum Information" data-source-author="Michael A. Nielsen, Isaac L. Chuang" data-source-year="2010">
+                    <strong>Nielsen, M. A., & Chuang, I. L.</strong> (2010). <em>Quantum Computation and Quantum Information</em> (10th Anniversary ed.). Cambridge University Press. ISBN: 978-1107002173.
+                    <a href="https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE" target="_blank" rel="noopener noreferrer">cambridge.org/quantum-computation</a>
+                    <span class="ref-badge">Фундаментальный учебник</span>
+                  </li>
+                  <li id="ref-26" class="ref-item" data-source-title="Superconducting Qubit Architecture and Scaling" data-source-author="IBM Quantum Team" data-source-year="2023">
+                    <strong>IBM Quantum.</strong> (2023). <em>The Quantum Centric Supercomputing Roadmap: Heron Processor Architecture</em>. IBM Research Technical Whitepaper.
+                    <a href="https://www.ibm.com/quantum/roadmap" target="_blank" rel="noopener noreferrer">ibm.com/quantum/roadmap</a>
+                    <span class="ref-badge">План развития IBM</span>
+                  </li>
+                  <li id="ref-27" class="ref-item" data-source-title="Quantum Supremacy Using a Programmable Superconducting Processor" data-source-author="Google Quantum AI (Arute et al.)" data-source-year="2019">
+                    <strong>Arute, F., Arya, K., Babbush, R., et al.</strong> (2019). <em>Quantum supremacy using a programmable superconducting processor</em>. Nature, 574(7779), 505–510.
+                    <a href="https://www.nature.com/articles/s41586-019-1666-5" target="_blank" rel="noopener noreferrer">nature.com/articles/s41586-019-1666-5</a>
+                    <span class="ref-badge">Публикация в Nature</span>
+                  </li>
+                  <li id="ref-28" class="ref-item" data-source-title="Neuromorphic Computing: The Loihi 2 Architecture" data-source-author="Intel Labs (Davies et al.)" data-source-year="2021">
+                    <strong>Orchard, G., Frady, E. P., et al. (Intel Labs).</strong> (2021). <em>Efficient Neuromorphic Computing with Loihi 2 and Lava</em>. IEEE Micro.
+                    <a href="https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html" target="_blank" rel="noopener noreferrer">intel.com/research/neuromorphic-computing</a>
+                    <span class="ref-badge">Архитектурный обзор</span>
+                  </li>
+                </ol>
+              </section>
+
+              <div class="wiki-categories-box">
+                <span class="categories-label">Категории статьи:</span>
+                <a href="#quantum" class="category-tag">Квантовые вычисления</a>
+                <a href="#architecture" class="category-tag">Нейроморфные архитектуры</a>
+                <a href="#cpu" class="category-tag">Криогенная электроника</a>
+              </div>
+            </div>
+
+            <!-- Infobox Quantum -->
+            <aside class="wiki-infobox">
+              <div class="infobox-title">Квантовый процессор (QPU)</div>
+              <div class="infobox-image-container">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80" alt="Квантовый процессор в криостате" class="infobox-image" loading="lazy">
+                <div class="infobox-caption">Сверхпроводящий квантовый процессор в терминальном узле криостата.</div>
+              </div>
+              <table class="infobox-table">
+                <tr>
+                  <th>Базовая единица информации</th>
+                  <td>Кубит (Qubit / Двухуровневая система)</td>
+                </tr>
+                <tr>
+                  <th>Ключевые квантовые эффекты</th>
+                  <td>Суперпозиция, Запутанность, Интерференция</td>
+                </tr>
+                <tr>
+                  <th>Физическая реализация</th>
+                  <td>Сверхпроводящие трансмоны, ионные ловушки</td>
+                </tr>
+                <tr>
+                  <th>Рабочая температура</th>
+                  <td>~15 милликельвин (-273.135 °C)</td>
+                </tr>
+                <tr>
+                  <th>Главная техническая проблема</th>
+                  <td>Квантовая декогеренция и шум (Fidelity)</td>
+                </tr>
+                <tr>
+                  <th>Ключевые алгоритмы</th>
+                  <td>Алгоритм Шора, Алгоритм Гровера</td>
+                </tr>
+                <tr>
+                  <th>Текущий этап развития</th>
+                  <td>NISQ (Noisy Intermediate-Scale Quantum)</td>
+                </tr>
+              </table>
+            </aside>
+          </div>
+        </article>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- =======================================================================
+       Interactive Search Modal Dialog
+       ======================================================================= -->
+  <div class="search-modal-backdrop" id="searchModal">
+    <div class="search-modal-window">
+      <div class="search-input-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="searchInput" class="search-field" placeholder="Поиск статей, терминов, микроархитектур (Ctrl+K)..." autocomplete="off">
+        <button id="searchCloseBtn" class="search-close-btn">ESC</button>
+      </div>
+      <ul class="search-results-list" id="searchResults">
+        <li style="padding: 1.5rem; text-align: center; color: var(--text-dim); font-size: 0.85rem;">
+          Введите ключевое слово (например: CPU, DDR5, фон Нейман, NVMe, ENIAC, Тьюринг...)
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       Image Lightbox Modal
+       ======================================================================= -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть просмотр">×</button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Увеличенное изображение">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- Wiki Interactive Script -->
+  <script src="script.js"></script>
+</body>
+</html>

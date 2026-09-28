@@ -1,0 +1,1259 @@
+/* ==========================================================================
+   CYBERWIKI: ВСЁ О КОМПЬЮТЕРАХ
+   Design System & Wiki Styling
+   Palette: Dark Gray, Slate, Cyan, Turquoise, Sky Blue
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg-deep: #080c14;
+  --bg-main: #0c121e;
+  --bg-surface: #111a2d;
+  --bg-card: #152238;
+  --bg-elevated: #1b2c48;
+  --bg-glass: rgba(17, 26, 45, 0.85);
+
+  /* Accents */
+  --cyan-primary: #00f2fe;
+  --cyan-hover: #4facfe;
+  --cyan-glow: rgba(0, 242, 254, 0.35);
+  --cyan-subtle: rgba(0, 242, 254, 0.1);
+
+  --turquoise-primary: #06b6d4;
+  --turquoise-accent: #14b8a6;
+  --turquoise-glow: rgba(20, 184, 166, 0.3);
+
+  --sky-blue: #38bdf8;
+  --sky-glow: rgba(56, 189, 248, 0.25);
+  --electric-blue: #2563eb;
+
+  /* Typography Colors */
+  --text-main: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #8194ad;
+  --text-dim: #52637a;
+  --text-cyan: #22d3ee;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(56, 189, 248, 0.12);
+  --border-bright: rgba(0, 242, 254, 0.35);
+  --border-active: #00f2fe;
+
+  /* Wiki Specific Elements */
+  --infobox-bg: #101b2f;
+  --infobox-border: rgba(0, 242, 254, 0.3);
+  --callout-bg: rgba(6, 182, 212, 0.08);
+  --callout-border: #06b6d4;
+  --code-bg: #090e18;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-cyan: 0 0 25px rgba(0, 242, 254, 0.15);
+  --shadow-neon: 0 0 15px rgba(0, 242, 254, 0.4), inset 0 0 15px rgba(0, 242, 254, 0.1);
+
+  /* Typography Variables */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Base Spacing */
+  --sidebar-width: 290px;
+  --header-height: 64px;
+  --content-max-width: 1380px;
+
+  /* Interactive Font Sizing (controlled via JS) */
+  --wiki-font-size: 16px;
+  --wiki-line-height: 1.75;
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: var(--wiki-font-size);
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: var(--wiki-line-height);
+  background: radial-gradient(circle at 15% 10%, rgba(0, 242, 254, 0.04) 0%, transparent 40%),
+              radial-gradient(circle at 85% 60%, rgba(6, 182, 212, 0.03) 0%, transparent 45%),
+              radial-gradient(circle at 50% 90%, rgba(37, 99, 235, 0.04) 0%, transparent 50%),
+              var(--bg-deep);
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elevated);
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--turquoise-primary);
+}
+
+/* Reading Progress Bar */
+#readingProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--turquoise-accent), var(--cyan-primary), var(--sky-blue));
+  box-shadow: 0 0 10px var(--cyan-primary);
+  z-index: 1000;
+  transition: width 0.1s ease-out;
+}
+
+/* ==========================================================================
+   App Layout
+   ========================================================================== */
+.wiki-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   Sidebar Navigation
+   ========================================================================== */
+.wiki-sidebar {
+  width: var(--sidebar-width);
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-subtle);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wiki-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+.logo-icon {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(6, 182, 212, 0.1));
+  border: 1px solid var(--cyan-primary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan-primary);
+  font-size: 1.2rem;
+  box-shadow: 0 0 12px var(--cyan-glow);
+}
+
+.logo-text h1 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #ffffff, var(--cyan-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.logo-text span {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--turquoise-accent);
+  font-weight: 600;
+}
+
+.sidebar-search-box {
+  padding: 1rem 1.25rem 0.5rem;
+}
+
+.search-trigger-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-trigger-btn:hover {
+  border-color: var(--cyan-primary);
+  color: var(--text-main);
+  box-shadow: 0 0 10px var(--cyan-glow);
+}
+
+.search-trigger-btn kbd {
+  background: var(--bg-card);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  border: 1px solid var(--border-subtle);
+  color: var(--sky-blue);
+}
+
+/* Sidebar Navigation Items */
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem 1rem;
+}
+
+.nav-category {
+  margin-bottom: 1.25rem;
+}
+
+.category-title {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sky-blue);
+  font-weight: 700;
+  padding: 0.4rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  border-radius: 6px;
+  transition: all 0.18s ease;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+
+.nav-link:hover {
+  background: var(--bg-card);
+  color: var(--cyan-primary);
+  transform: translateX(3px);
+}
+
+.nav-link.active {
+  background: linear-gradient(90deg, rgba(0, 242, 254, 0.15), rgba(6, 182, 212, 0.05));
+  border-left: 3px solid var(--cyan-primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-link .badge {
+  font-size: 0.65rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--sky-blue);
+  font-family: var(--font-mono);
+}
+
+/* Sidebar Footer / Meta */
+.sidebar-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-deep);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.wiki-stats-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--turquoise-accent);
+  margin-bottom: 0.35rem;
+}
+
+.wiki-stats-badge .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--turquoise-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--turquoise-accent);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+.wiki-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Wiki Navbar */
+.wiki-navbar {
+  height: var(--header-height);
+  position: sticky;
+  top: 0;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 90;
+}
+
+.nav-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.breadcrumb-item {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.breadcrumb-item:hover {
+  color: var(--cyan-primary);
+}
+
+.breadcrumb-separator {
+  color: var(--text-dim);
+}
+
+.breadcrumb-current {
+  color: var(--cyan-primary);
+  font-weight: 500;
+}
+
+/* Navbar Action Tools */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.action-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  border-color: var(--cyan-primary);
+  color: var(--text-main);
+  background: var(--bg-card);
+}
+
+.verified-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(20, 184, 166, 0.12);
+  border: 1px solid rgba(20, 184, 166, 0.4);
+  color: #2dd4bf;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Article Container & Typography
+   ========================================================================== */
+.wiki-content-wrapper {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
+  width: 100%;
+}
+
+.article-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.article-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.article-title {
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+}
+
+.article-meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.article-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.article-meta-item i, .article-meta-item svg {
+  color: var(--turquoise-accent);
+}
+
+/* Layout with Infobox */
+.article-body-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.article-prose {
+  min-width: 0;
+}
+
+/* ==========================================================================
+   Wiki Infobox (Классическая сводная карточка)
+   ========================================================================== */
+.wiki-infobox {
+  background: var(--infobox-bg);
+  border: 1px solid var(--infobox-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md), var(--shadow-cyan);
+  position: sticky;
+  top: calc(var(--header-height) + 1.5rem);
+}
+
+.infobox-title {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(6, 182, 212, 0.1));
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.9rem 1.2rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cyan-primary);
+  letter-spacing: -0.01em;
+}
+
+.infobox-image-container {
+  padding: 1rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.infobox-image {
+  max-width: 100%;
+  height: 190px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.infobox-image:hover {
+  transform: scale(1.02);
+  border-color: var(--cyan-primary);
+}
+
+.infobox-caption {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+.infobox-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.infobox-table th,
+.infobox-table td {
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.08);
+  vertical-align: top;
+}
+
+.infobox-table th {
+  text-align: left;
+  color: var(--sky-blue);
+  font-weight: 600;
+  width: 42%;
+  background: rgba(17, 26, 45, 0.4);
+}
+
+.infobox-table td {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.infobox-table tr:last-child th,
+.infobox-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==========================================================================
+   Table of Contents (Содержание статьи)
+   ========================================================================== */
+.wiki-toc-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+  min-width: 320px;
+  max-width: 100%;
+}
+
+.toc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.toc-title {
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--cyan-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toc-toggle {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.toc-toggle:hover {
+  color: var(--cyan-primary);
+}
+
+.toc-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc-item {
+  margin-bottom: 0.35rem;
+  font-size: 0.88rem;
+}
+
+.toc-item.nested {
+  padding-left: 1.25rem;
+  font-size: 0.82rem;
+  margin-top: 0.2rem;
+}
+
+.toc-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: inline-flex;
+  gap: 0.5rem;
+  transition: color 0.15s ease;
+}
+
+.toc-link .toc-num {
+  color: var(--turquoise-accent);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.toc-link:hover {
+  color: var(--cyan-primary);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Prose Styling & Headings
+   ========================================================================== */
+.article-prose h2 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.article-prose h2::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 1.4rem;
+  background: linear-gradient(to bottom, var(--cyan-primary), var(--turquoise-accent));
+  border-radius: 2px;
+}
+
+.article-prose h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--sky-blue);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.article-prose p {
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  text-align: justify;
+}
+
+.article-prose strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.article-prose a.wiki-link {
+  color: var(--cyan-primary);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--turquoise-accent);
+  transition: all 0.15s ease;
+}
+
+.article-prose a.wiki-link:hover {
+  color: #ffffff;
+  border-bottom-style: solid;
+  background: var(--cyan-subtle);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* Footnotes & Citation References in text */
+.ref-cite {
+  font-size: 0.72rem;
+  vertical-align: super;
+  font-family: var(--font-mono);
+  margin-left: 2px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+.ref-cite a {
+  color: var(--cyan-primary);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 1px 3px;
+  background: rgba(0, 242, 254, 0.08);
+  border-radius: 3px;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  transition: all 0.2s ease;
+}
+
+.ref-cite a:hover {
+  background: var(--cyan-primary);
+  color: var(--bg-deep);
+  box-shadow: 0 0 8px var(--cyan-glow);
+}
+
+/* ==========================================================================
+   Callout Boxes & Quotes
+   ========================================================================== */
+.wiki-callout {
+  background: var(--callout-bg);
+  border-left: 4px solid var(--callout-border);
+  border-radius: 0 8px 8px 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.75rem 0;
+  position: relative;
+}
+
+.callout-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cyan-primary);
+  margin-bottom: 0.5rem;
+}
+
+.wiki-callout p {
+  margin-bottom: 0;
+  font-size: 0.94rem;
+  color: var(--text-main);
+}
+
+.wiki-callout.fact {
+  --callout-bg: rgba(20, 184, 166, 0.08);
+  --callout-border: var(--turquoise-accent);
+}
+
+.wiki-callout.warning {
+  --callout-bg: rgba(245, 158, 11, 0.08);
+  --callout-border: #f59e0b;
+}
+
+/* ==========================================================================
+   Article Media Gallery / Figure
+   ========================================================================== */
+.wiki-figure {
+  margin: 2rem 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.wiki-figure img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.wiki-figure-caption {
+  padding: 0.85rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.figure-source-link {
+  font-size: 0.78rem;
+  color: var(--turquoise-accent);
+  text-decoration: none;
+}
+
+.figure-source-link:hover {
+  text-decoration: underline;
+  color: var(--cyan-primary);
+}
+
+/* ==========================================================================
+   Comparison Data Tables
+   ========================================================================== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.wiki-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.wiki-data-table th {
+  background: var(--bg-card);
+  color: var(--cyan-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 0.85rem 1rem;
+  border-bottom: 2px solid var(--border-subtle);
+  white-space: nowrap;
+}
+
+.wiki-data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.08);
+  color: var(--text-secondary);
+}
+
+.wiki-data-table tr:hover td {
+  background: rgba(0, 242, 254, 0.03);
+  color: #ffffff;
+}
+
+.wiki-data-table code {
+  font-family: var(--font-mono);
+  background: var(--code-bg);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  color: var(--turquoise-accent);
+  font-size: 0.82rem;
+}
+
+/* ==========================================================================
+   References & Literature Section (Источники и ссылки)
+   ========================================================================== */
+.references-section {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.references-section h2 {
+  font-size: 1.5rem;
+  color: var(--cyan-primary);
+  margin-bottom: 1.25rem;
+}
+
+.references-list {
+  padding-left: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.ref-item {
+  margin-bottom: 0.85rem;
+  padding-left: 0.5rem;
+  line-height: 1.6;
+  scroll-margin-top: 80px;
+  transition: all 0.3s ease;
+}
+
+.ref-item.highlighted {
+  background: rgba(0, 242, 254, 0.1);
+  border-left: 3px solid var(--cyan-primary);
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+}
+
+.ref-item a {
+  color: var(--sky-blue);
+  text-decoration: none;
+  word-break: break-all;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ref-item a:hover {
+  color: var(--cyan-primary);
+  text-decoration: underline;
+}
+
+.ref-item .ref-badge {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  padding: 0.1rem 0.35rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--turquoise-accent);
+  margin-left: 0.5rem;
+}
+
+/* Categories List at Bottom */
+.wiki-categories-box {
+  margin-top: 2.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+
+.categories-label {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.category-tag {
+  background: var(--bg-card);
+  color: var(--turquoise-accent);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  text-decoration: none;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.category-tag:hover {
+  background: var(--turquoise-accent);
+  color: var(--bg-deep);
+  border-color: var(--turquoise-accent);
+}
+
+/* ==========================================================================
+   Citation Popover Tooltip
+   ========================================================================== */
+.citation-tooltip {
+  position: absolute;
+  z-index: 2000;
+  width: 320px;
+  background: var(--bg-card);
+  border: 1px solid var(--cyan-primary);
+  border-radius: 8px;
+  padding: 0.9rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-md), var(--shadow-cyan);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.citation-tooltip.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.citation-tooltip-title {
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+  font-size: 0.84rem;
+}
+
+.citation-tooltip-source {
+  color: var(--cyan-primary);
+  font-size: 0.75rem;
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* ==========================================================================
+   Full-text Search Modal
+   ========================================================================== */
+.search-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 12, 20, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 1100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.search-modal-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-modal-window {
+  width: 90%;
+  max-width: 640px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-bright);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 25px var(--cyan-glow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 75vh;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  gap: 0.75rem;
+}
+
+.search-input-wrapper svg {
+  color: var(--cyan-primary);
+  font-size: 1.2rem;
+}
+
+.search-field {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.05rem;
+  color: #ffffff;
+  font-family: var(--font-sans);
+}
+
+.search-field::placeholder {
+  color: var(--text-dim);
+}
+
+.search-close-btn {
+  background: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
+.search-results-list {
+  overflow-y: auto;
+  padding: 0.75rem;
+  list-style: none;
+}
+
+.search-result-item {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-bottom: 4px;
+  border: 1px solid transparent;
+}
+
+.search-result-item:hover, .search-result-item.selected {
+  background: var(--bg-elevated);
+  border-color: var(--border-bright);
+}
+
+.result-article-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.result-article-title .category-tag-small {
+  font-size: 0.7rem;
+  color: var(--cyan-primary);
+  font-family: var(--font-mono);
+}
+
+.result-snippet {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.result-snippet mark {
+  background: rgba(0, 242, 254, 0.25);
+  color: var(--cyan-primary);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* ==========================================================================
+   Image Lightbox Modal
+   ========================================================================== */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 12, 20, 0.92);
+  backdrop-filter: blur(10px);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.lightbox-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 80vh;
+  position: relative;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: 8px;
+  border: 1px solid var(--border-bright);
+  box-shadow: 0 0 35px var(--cyan-glow);
+}
+
+.lightbox-caption {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lightbox-close:hover {
+  background: var(--cyan-primary);
+  color: var(--bg-deep);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .article-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .wiki-infobox {
+    position: static;
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 860px) {
+  .wiki-sidebar {
+    transform: translateX(-100%);
+  }
+  .wiki-sidebar.mobile-open {
+    transform: translateX(0);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  }
+  .wiki-main {
+    margin-left: 0;
+  }
+  .mobile-nav-toggle {
+    display: block;
+  }
+  .wiki-content-wrapper {
+    padding: 1.5rem 1rem 3rem;
+  }
+  .article-title {
+    font-size: 2rem;
+  }
+  .navbar-actions .verified-pill {
+    display: none;
+  }
+}
